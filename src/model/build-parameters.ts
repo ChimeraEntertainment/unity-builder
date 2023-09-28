@@ -18,6 +18,7 @@ class BuildParameters {
   [key: string]: any;
 
   public editorVersion!: string;
+  public customUnityPath!: boolean;
   public customImage!: string;
   public unitySerial!: string;
   public unityLicensingServer!: string;
@@ -130,6 +131,7 @@ class BuildParameters {
 
     return {
       editorVersion,
+      customUnityPath: Input.customUnityPath,
       customImage: Input.customImage,
       unitySerial,
       unityLicensingServer: Input.unityLicensingServer,
