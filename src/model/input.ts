@@ -136,6 +136,12 @@ class Input {
     return input === 'true';
   }
 
+  static get customUnityPath(): boolean {
+    const input = Input.getInput('customUnityPath') || false;
+
+    return input === 'true';
+  }
+
   static get customParameters(): string {
     return Input.getInput('customParameters') || '';
   }
