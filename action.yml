@@ -2,6 +2,10 @@ name: 'Unity - Builder'
 author: Webber Takken <webber@takken.io>
 description: 'Build Unity projects for different platforms.'
 inputs:
+  targetArchitecture:
+    required: true
+    default: 'arm64'
+    description: 'Target architecture'
   targetPlatform:
     required: true
     default: ''
