@@ -39,6 +39,10 @@ inputs:
     required: false
     default: ''
     description: 'Suppresses `-quit`. Exit your build method using `EditorApplication.Exit(0)` instead.'
+  cleanBuild:
+    required: false
+    default: ''
+    description: 'If the build will be a clean one or not.'
   customParameters:
     required: false
     default: ''
@@ -209,6 +213,10 @@ inputs:
     default: 'false'
     required: false
     description: 'Whether to cache the Unity hub and editor installation on MacOS'
+  cacheServerEndpoint:
+    default: ''
+    required: true
+    description: 'Cache Server Endpoint that we will use to build'
   unityHubVersionOnMac:
     default: ''
     required: false

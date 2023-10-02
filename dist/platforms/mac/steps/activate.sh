@@ -37,7 +37,7 @@ elif [[ -n "$UNITY_LICENSING_SERVER" ]]; then
   /Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/Frameworks/UnityLicensingClient.app/Contents/Resources/Unity.Licensing.Client --acquire-floating > license.txt #is this accessible in a env variable?
 
   ##PARSEDFILE=$(grep -oP '\".*?\"' < license.txt | tr -d '"')
-  FLOATING_LICENSE=$(cat license.txt | awk '/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/' | awk '{print $6}' | sed 's/.$//')
+  FLOATING_LICENSE=$(cat license.txt)
   export FLOATING_LICENSE
   ##FLOATING_LICENSE=$(sed -n 2p <<< "$PARSEDFILE")
   #FLOATING_LICENSE_TIMEOUT=$(sed -n 4p <<< "$PARSEDFILE")

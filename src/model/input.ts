@@ -136,6 +136,10 @@ class Input {
     return input === 'true';
   }
 
+  static get cleanBuild(): string {
+    return Input.getInput('cleanBuild') || '';
+  }
+
   static get customParameters(): string {
     return Input.getInput('customParameters') || '';
   }
@@ -204,6 +208,10 @@ class Input {
     const input = Input.getInput('allowDirtyBuild') || false;
 
     return input === 'true';
+  }
+
+  static get cacheServerEndpoint(): string {
+    return Input.getInput('cacheServerEndpoint') || '';
   }
 
   static get cacheUnityInstallationOnMac(): boolean {

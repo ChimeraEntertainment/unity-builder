@@ -127,40 +127,78 @@ echo ""
 
 # Reference: https://docs.unity3d.com/2019.3/Documentation/Manual/CommandLineArguments.html
 
-/Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/MacOS/Unity \
+
+if [ -z "$CLEAN_BUILD" ]; then
+
+  echo ""
+  echo "Rebuilding Project"
+  echo ""
+  
+  /Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/MacOS/Unity \
   -logFile - \
+  -accept-apiupdate \
   -quit \
+  -cacheServerEndpoint "$CACHESERVERENDPOINT" \
   -batchmode \
   -nographics \
-  -customBuildName "$BUILD_NAME" \
+  -buildTarget "$BUILD_TARGET" \
+  -projectPath "$UNITY_PROJECT_PATH" \
+  $CUSTOM_PARAMETERS
+    
+  # -customBuildName "$BUILD_NAME" \
+  # -customBuildTarget "$BUILD_TARGET" \
+  # -customBuildPath "$CUSTOM_BUILD_PATH" \
+  # -buildVersion "$VERSION" \
+  # -androidVersionCode "$ANDROID_VERSION_CODE" \
+  # -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
+  # -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
+  # -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
+  # -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
+  # -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
+  # -androidExportType "$ANDROID_EXPORT_TYPE" \
+  # -androidSymbolType "$ANDROID_SYMBOL_TYPE" \
+
+  # Catch exit code
+  BUILD_EXIT_CODE=$?
+
+else
+
+  /Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/MacOS/Unity \
+  -logFile - \
+  -quit \
+  -cacheServerEndpoint "$CACHESERVERENDPOINT" \
+  -batchmode \
+  -nographics \
   -projectPath "$UNITY_PROJECT_PATH" \
   -buildTarget "$BUILD_TARGET" \
-  -customBuildTarget "$BUILD_TARGET" \
-  -customBuildPath "$CUSTOM_BUILD_PATH" \
   -executeMethod "$BUILD_METHOD" \
-  -buildVersion "$VERSION" \
-  -androidVersionCode "$ANDROID_VERSION_CODE" \
-  -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
-  -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
-  -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
-  -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
-  -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
-  -androidExportType "$ANDROID_EXPORT_TYPE" \
-  -androidSymbolType "$ANDROID_SYMBOL_TYPE" \
   $CUSTOM_PARAMETERS
+  
+  # -customBuildName "$BUILD_NAME" \
+  # -customBuildTarget "$BUILD_TARGET" \
+  # -customBuildPath "$CUSTOM_BUILD_PATH" \
+  # -buildVersion "$VERSION" \
+  # -androidVersionCode "$ANDROID_VERSION_CODE" \
+  # -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
+  # -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
+  # -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
+  # -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
+  # -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
+  # -androidExportType "$ANDROID_EXPORT_TYPE" \
+  # -androidSymbolType "$ANDROID_SYMBOL_TYPE" \
+  
+  # Catch exit code
+  BUILD_EXIT_CODE=$?
 
-# Catch exit code
-BUILD_EXIT_CODE=$?
-
-# Display logs
-cat "$UNITY_PROJECT_PATH/out.log"
-
-# Display results
-if [ $BUILD_EXIT_CODE -eq 0 ]; then
-  echo "Build succeeded";
-else
-  echo "Build failed, with exit code $BUILD_EXIT_CODE";
 fi
+
+  # Display results
+  if [ $BUILD_EXIT_CODE -eq 0 ]; then
+    echo "Build succeeded";
+  else
+    echo "Build failed, with exit code $BUILD_EXIT_CODE";
+  fi
+
 
 #
 # Permissions
