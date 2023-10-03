@@ -19,11 +19,11 @@ mkdir -p "$ACTIVATE_LICENSE_PATH"
 # always build.sh
 source $ACTION_FOLDER/platforms/mac/steps/activate.sh
 
-if [ -z "$CLEAN_BUILD" ]; 
+if [ -z "$CLEAN_BUILD" ]; then
 
     source $ACTION_FOLDER/platforms/mac/steps/build-library.sh
 
-elif [ -z "$ADDRESSABLE_BUILD" ];
+elif [ -z "$ADDRESSABLE_BUILD" ]; then 
 
     source $ACTION_FOLDER/platforms/mac/steps/build-addressable.sh
 

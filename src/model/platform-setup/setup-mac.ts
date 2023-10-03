@@ -17,10 +17,20 @@ class SetupMac {
     }
 
     if (!fs.existsSync(unityEditorPath.replace(/"/g, ''))) {
+      await SetupMac.installPackages('grep');
       await SetupMac.installUnity(buildParameters);
     }
 
     await SetupMac.setEnvironmentVariables(buildParameters, actionFolder);
+  }
+
+  private static async installPackages(PackageName: string, silent = false) {
+    const command = `brew install ${PackageName}`;
+
+    const errorCode = await exec(command, undefined, { silent, ignoreReturnCode: true });
+    if (errorCode) {
+      throw new Error(`There was an error installing the ${PackageName} package. see logs above for details.`);
+    }
   }
 
   private static async installUnityHub(buildParameters: BuildParameters, silent = false) {
