@@ -25,6 +25,7 @@ class BuildParameters {
   public targetPlatform!: string;
   public targetArchitecture!: string;
   public cleanBuild!: string;
+  public addressableBuild!: string;
   public projectPath!: string;
   public buildName!: string;
   public buildPath!: string;
@@ -139,6 +140,7 @@ class BuildParameters {
       targetPlatform: Input.targetPlatform,
       targetArchitecture: Input.targetArchitecture,
       cleanBuild: Input.cleanBuild,
+      addressableBuild: Input.addressableBuild,
       projectPath: Input.projectPath,
       buildName: Input.buildName,
       buildPath: `${Input.buildsPath}/${Input.targetPlatform}`,

@@ -144,6 +144,8 @@ class SetupMac {
     process.env.UNITY_SERIAL = buildParameters.unitySerial;
     process.env.UNITY_LICENSING_SERVER = buildParameters.unityLicensingServer;
     process.env.CLEAN_BUILD = buildParameters.cleanBuild;
+    process.env.ADDRESSABLE_BUILD = buildParameters.addressableBuild;
+    process.env.CACHESERVERENDPOINT = buildParameters.cacheServerEndpoint;
     process.env.PROJECT_PATH = buildParameters.projectPath;
     process.env.BUILD_TARGET = buildParameters.targetPlatform;
     process.env.BUILD_NAME = buildParameters.buildName;

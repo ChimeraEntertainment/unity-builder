@@ -43,6 +43,10 @@ inputs:
     required: false
     default: ''
     description: 'If the build will be a clean one or not.'
+  addressableBuild:
+    required: false
+    default: ''
+    description: 'If the build will be an addressable one or not.'
   customParameters:
     required: false
     default: ''

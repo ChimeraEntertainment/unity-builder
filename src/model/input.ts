@@ -140,6 +140,10 @@ class Input {
     return Input.getInput('cleanBuild') || '';
   }
 
+  static get addressableBuild(): string {
+    return Input.getInput('addressableBuild') || '';
+  }
+
   static get customParameters(): string {
     return Input.getInput('customParameters') || '';
   }
