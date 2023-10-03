@@ -17,10 +17,20 @@ class SetupMac {
     }
 
     if (!fs.existsSync(unityEditorPath.replace(/"/g, ''))) {
+      await SetupMac.installPackages('grep');
       await SetupMac.installUnity(buildParameters);
     }
 
     await SetupMac.setEnvironmentVariables(buildParameters, actionFolder);
+  }
+
+  private static async installPackages(PackageName: string, silent = false) {
+    const command = `brew install ${PackageName}`;
+
+    const errorCode = await exec(command, undefined, { silent, ignoreReturnCode: true });
+    if (errorCode) {
+      throw new Error(`There was an error installing the ${PackageName} package. see logs above for details.`);
+    }
   }
 
   private static async installUnityHub(buildParameters: BuildParameters, silent = false) {
@@ -143,6 +153,9 @@ class SetupMac {
     process.env.UNITY_VERSION = buildParameters.editorVersion;
     process.env.UNITY_SERIAL = buildParameters.unitySerial;
     process.env.UNITY_LICENSING_SERVER = buildParameters.unityLicensingServer;
+    process.env.CLEAN_BUILD = buildParameters.cleanBuild;
+    process.env.ADDRESSABLE_BUILD = buildParameters.addressableBuild;
+    process.env.CACHESERVERENDPOINT = buildParameters.cacheServerEndpoint;
     process.env.PROJECT_PATH = buildParameters.projectPath;
     process.env.BUILD_TARGET = buildParameters.targetPlatform;
     process.env.BUILD_NAME = buildParameters.buildName;

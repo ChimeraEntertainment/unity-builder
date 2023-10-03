@@ -13,8 +13,27 @@ mkdir -p "$ACTIVATE_LICENSE_PATH"
 #
 # Run steps
 #
+
+#if clean run clean.sh
+#if addressables run build-addressables
+# always build.sh
 source $ACTION_FOLDER/platforms/mac/steps/activate.sh
-source $ACTION_FOLDER/platforms/mac/steps/build.sh
+
+if [ -z "$CLEAN_BUILD" ]; then
+
+    source $ACTION_FOLDER/platforms/mac/steps/build-library.sh
+
+elif [ -z "$ADDRESSABLE_BUILD" ]; then 
+
+    source $ACTION_FOLDER/platforms/mac/steps/build-addressable.sh
+
+else
+    
+    source $ACTION_FOLDER/platforms/mac/steps/build.sh
+
+fi
+
+
 source $ACTION_FOLDER/platforms/mac/steps/return_license.sh
 
 #

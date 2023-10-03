@@ -130,32 +130,18 @@ echo ""
 /Applications/Unity/Hub/Editor/$UNITY_VERSION/Unity.app/Contents/MacOS/Unity \
   -logFile - \
   -quit \
+  -cacheServerEndpoint "$CACHESERVERENDPOINT" \
   -batchmode \
   -nographics \
-  -customBuildName "$BUILD_NAME" \
   -projectPath "$UNITY_PROJECT_PATH" \
   -buildTarget "$BUILD_TARGET" \
-  -customBuildTarget "$BUILD_TARGET" \
-  -customBuildPath "$CUSTOM_BUILD_PATH" \
   -executeMethod "$BUILD_METHOD" \
-  -buildVersion "$VERSION" \
-  -androidVersionCode "$ANDROID_VERSION_CODE" \
-  -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
-  -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
-  -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
-  -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
-  -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
-  -androidExportType "$ANDROID_EXPORT_TYPE" \
-  -androidSymbolType "$ANDROID_SYMBOL_TYPE" \
   $CUSTOM_PARAMETERS
-
+  
 # Catch exit code
 BUILD_EXIT_CODE=$?
 
-# Display logs
-cat "$UNITY_PROJECT_PATH/out.log"
-
-# Display results
+  # Display results
 if [ $BUILD_EXIT_CODE -eq 0 ]; then
   echo "Build succeeded";
 else

@@ -24,6 +24,8 @@ class BuildParameters {
   public runnerTempPath!: string;
   public targetPlatform!: string;
   public targetArchitecture!: string;
+  public cleanBuild!: string;
+  public addressableBuild!: string;
   public projectPath!: string;
   public buildName!: string;
   public buildPath!: string;
@@ -84,6 +86,7 @@ class BuildParameters {
   public skipLfs!: boolean;
   public skipCache!: boolean;
   public cacheUnityInstallationOnMac!: boolean;
+  public cacheServerEndpoint!: string;
   public unityHubVersionOnMac!: string;
   public dockerWorkspacePath!: string;
 
@@ -136,6 +139,8 @@ class BuildParameters {
       runnerTempPath: Input.runnerTempPath,
       targetPlatform: Input.targetPlatform,
       targetArchitecture: Input.targetArchitecture,
+      cleanBuild: Input.cleanBuild,
+      addressableBuild: Input.addressableBuild,
       projectPath: Input.projectPath,
       buildName: Input.buildName,
       buildPath: `${Input.buildsPath}/${Input.targetPlatform}`,
@@ -194,6 +199,7 @@ class BuildParameters {
       skipLfs: CloudRunnerOptions.skipLfs,
       skipCache: CloudRunnerOptions.skipCache,
       cacheUnityInstallationOnMac: Input.cacheUnityInstallationOnMac,
+      cacheServerEndpoint: Input.cacheServerEndpoint,
       unityHubVersionOnMac: Input.unityHubVersionOnMac,
       dockerWorkspacePath: Input.dockerWorkspacePath,
     };
